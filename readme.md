@@ -1,12 +1,9 @@
-# Hannah's OLKB Planck Layout
+# Hannah's OLKB Planck Hold Layout
 
- This OLKB Planck layout is a modification of the 34-key layout I use on my
-Ferris Sweep. It treats the Planck as a 34-key keyboard and uses the additional
-keys for extras.
-
-Broadly speaking, the layout is designed so that keys and modifiers are tapped
-rather than held down. In place of the homerow modifiers this Planck version has
-additional modifier keys mapped as one shot modifiers.
+This OLKB Planck layout is a distant cousin of the 34-key layout I initially
+used when I first got my Ferris Sweep. Broadly speaking, it treats the Planck as
+a 34-key keyboard and uses the additional keys for extras. I am using it to test
+out a potential 42-key layout for a Cantor-style keyboard.
 
 There are additional layer keys available to access function keys and shortcuts
 although, in the case of the shortcuts, they may be honed to my individual
@@ -15,7 +12,7 @@ AutoHotkey script for information.
 
 ### Credit
 
-I want to give full credit and a massive amount of thanks to [Ben
+As ever, I want to give credit and thanks to [Ben
 Vallack](https://www.youtube.com/benvallack) for talking through his
 tap-not-hold approach and for all of his inspirational work on ergonomic
 keyboards and layouts. My initial layout drew heavily from his [Ferris Sweep
@@ -23,44 +20,41 @@ layout](https://github.com/benvallack/34-QMK-Ferris-Sweep).
 
 The contributers who make QMK possible are an incredible bunch of people and the
 ErgoMechKeyboard community as a whole has been welcoming and helpful. Please
-support open source projects and communities, folks.
+support open source projects and communities.
 
-## Layer Navigation
+## Layers
 
-The layer navigation keys are designed so that you can move between layers in a
-predictable way without having to know which layer you are currently in.
+### Base Layer
 
-**To get to the base layer** tap the *right thumb key* followed by the *left thumb key*.
+[Base Layer](https://i.imgur.com/lsXW3Mc.png)
 
-**To get to the shortcut layer** tap the *forward slash key* once.
+### Right Symbol Layer
 
-Note that you can get a forward slash character by typing the *forward slash
-key* twice. To get a question mark character, press the `Shift` key first.
+[Right Symbol Layer](https://i.imgur.com/6zHpe9f.png)
 
-**To get to the number layer** tap the *right thumb key* twice.
+### Left Symbol Layer
 
-**To get to the function layer** tap the *bottom left key*.
+[Left Symbol Layer](https://i.imgur.com/CQ7dfmn.png)
 
-**To get to the symbol layer** tap the *right*, *left* then *right thumb key*.
+### Navigation Layer
 
-## Base Layer
+[Navigation Layer](https://i.imgur.com/LSOYyqC.png)
 
-![Base Layer](https://i.imgur.com/t6V6eYU.png)
+### Number Layer
 
-## Symbol Layer
+[Number Layer](https://i.imgur.com/xwLTub5.png)
 
-![Symbol Layer](https://i.imgur.com/Pb4pIjD.png)
+### Control Layer
 
-## Navigation Layer
+[Control Layer](https://i.imgur.com/tvtl2IY.png)
 
-![Navigation Layer](https://i.imgur.com/z980sgh.png)
+### Shortcut Layer
 
-## Function Layer
+[Shortcut Layer](https://i.imgur.com/57U8mHr.png)
 
-![Function Layer](https://i.imgur.com/xZUrZkp.png)
 
-## Shortcut Layer
 
-![Shortcut Layer](https://i.imgur.com/hQgsvtr.png)
+
+
 
 
