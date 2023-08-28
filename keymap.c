@@ -21,6 +21,7 @@ enum my_layers {
   RSYM_LAYER,
   NUM_LAYER,
   NAV_LAYER,
+  FKEYS_LAYER,
   CTRL_LAYER,
   SCUT_LAYER
 };
@@ -61,10 +62,10 @@ static bool m_is_chromebook = false;
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [BASE_LAYER] = LAYOUT_planck_grid(
-    KC_ESC,          KC_Q,             KC_W,           KC_F,           KC_P,           KC_B,    KC_J,    KC_L,    KC_U,           KC_Y,           KC_NUBS,          KC_DEL,
-    KC_TAB,          KC_A,             KC_R,           KC_S,           KC_T,           KC_G,    KC_M,    KC_N,    KC_E,           KC_I,           KC_O,             KC_BSPC,
-    TO(CTRL_LAYER), OSL(RSYM_LAYER),   KC_X,           KC_C,           KC_D,           KC_V,    KC_K,    KC_H,    KC_COMM,        KC_DOT,         OSL(LSYM_LAYER), OSL(SCUT_LAYER),
-    OSM(MOD_LCTL),   OSM(MOD_LALT),    OSM(MOD_LGUI),  MO(NAV_LAYER),  OSM(MOD_LSFT),  KC_SPC,  KC_ENT,  KC_ESC,  MO(NUM_LAYER),  OSM(MOD_RGUI),  OSM(MOD_RALT),    OSM(MOD_RCTL)
+    KC_ESC,         KC_Q,           LCTL_T(KC_W),          LALT_T(KC_F),         LGUI_T(KC_P),           KC_B,    KC_J,    RGUI_T(KC_L),          RALT_T(KC_U),         RCTL_T(KC_Y),           KC_NUBS,        KC_DEL,
+    KC_TAB,         KC_A,           LT(CTRL_LAYER, KC_R),  LT(NAV_LAYER, KC_S),  LT(RSYM_LAYER, KC_T),  KC_G,    KC_M,    LT(LSYM_LAYER, KC_N),  LT(NUM_LAYER, KC_E),  LT(FKEYS_LAYER, KC_I),  KC_O,           KC_BSPC,
+    KC_CAPS,        KC_Z,           KC_X,                  KC_C,                 KC_D,                  KC_V,    KC_K,    KC_H,                  KC_COMM,              KC_DOT,                 KC_SLSH,        OSL(SCUT_LAYER),
+    OSM(MOD_LCTL),  OSM(MOD_LALT),  OSM(MOD_LGUI),         MO(NAV_LAYER),        OSM(MOD_LSFT),         KC_SPC,  KC_ENT,  KC_ESC,                MO(NUM_LAYER),        OSM(MOD_RGUI),          OSM(MOD_RALT),  OSM(MOD_RCTL)
   ),
 
   [LSYM_LAYER] = LAYOUT_planck_grid(
@@ -95,13 +96,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,       KC_TRNS,  KC_TRNS,  KC_TRNS
   ),
 
+  [FKEYS_LAYER] = LAYOUT_planck_grid(
+    KC_TRNS,  KC_NO,    KC_F1,    KC_F2,    KC_F3,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_TRNS,
+    KC_TRNS,  KC_NO,    KC_F4,    KC_F5,    KC_F6,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_TRNS,
+    KC_TRNS,  KC_NO,    KC_F7,    KC_F8,    KC_F9,    KC_F10,   KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_TRNS,
+    KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS
+  ),
+
   [CTRL_LAYER] = LAYOUT_planck_grid(
-    TO(BASE_LAYER),  KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    M_ISWIN,         M_ISCB,   KC_PSCR,  KC_INS,        KC_TRNS,
+    KC_TRNS,         KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    M_ISWIN,         M_ISCB,   KC_PSCR,  KC_INS,        KC_TRNS,
     KC_TRNS,         KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_BRIU,  KC_VOLU,         KC_MNXT,  KC_MPLY,  LSFT(KC_INS),  KC_TRNS,
     KC_TRNS,         KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_BRID,  KC_VOLD,         KC_MPRV,  KC_MUTE,  LCTL(KC_INS),  KC_TRNS,
-    KC_TRNS,         KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  TO(BASE_LAYER),  KC_TRNS,  KC_TRNS,  KC_TRNS,       KC_TRNS
-
-
+    KC_TRNS,         KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,         KC_TRNS,  KC_TRNS,  KC_TRNS,       KC_TRNS
   ),
 
   [SCUT_LAYER]  = LAYOUT_planck_grid(
@@ -121,18 +127,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   }
   // Ensure shift is not pressed when the symbol layer is active.
   if (IS_LAYER_ON(LSYM_LAYER) || IS_LAYER_ON(RSYM_LAYER)) {
-    // But allow the Z and / keycodes in the symbol layers to be shifted.
-    switch (keycode) {
-      case OSL(LSYM_LAYER):
-      case OSL(RSYM_LAYER):
-      case KC_Z:
-      case KC_SLSH:
-        break;
-      default:
-        del_mods(MOD_MASK_SHIFT);
-        del_oneshot_mods(MOD_MASK_SHIFT);
-        break;
-    }
+    del_mods(MOD_MASK_SHIFT);
+    del_oneshot_mods(MOD_MASK_SHIFT);
   }
   switch (keycode) {
     case M_ALTT:
@@ -355,24 +351,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 void post_process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
-    // Return to the base layer if space, enter, home, end or a function key is
-    // pressed.
-    case KC_SPC:
-    case KC_TAB:
-    case KC_ENT:
-    case KC_PSCR:
-    case KC_INS:
-    case LSFT(KC_INS):
-    case LCTL(KC_INS):
-    case KC_F1 ... KC_F12:
-    case M_ISCB:
-    case M_ISWIN:
-      if (!record->event.pressed) { layer_move(BASE_LAYER); }
-      break;
     // Cancel caps lock if escape is pressed.
     case KC_ESC:
       if (host_keyboard_led_state().caps_lock) { tap_code(KC_CAPS); }
-      if (!record->event.pressed) { layer_move(BASE_LAYER); }
       break;
   }
 }
@@ -380,15 +361,21 @@ void post_process_record_user(uint16_t keycode, keyrecord_t *record) {
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
     // Set the tapping term for the homerow mods.
-    case LSFT_T(KC_Q):
     case LCTL_T(KC_W):
     case LALT_T(KC_F):
     case LGUI_T(KC_P):
     case LGUI_T(KC_L):
     case LALT_T(KC_U):
     case LCTL_T(KC_Y):
-    case LSFT_T(KC_NUBS):
       return TAPPING_TERM_MODS;
+    // Set the tapping term for the layer keys.
+    case LCTL_T(KC_R):
+    case LALT_T(KC_S):
+    case LGUI_T(KC_T):
+    case LGUI_T(KC_N):
+    case LALT_T(KC_E):
+    case LCTL_T(KC_I):
+      return TAPPING_TERM_LAYERS;
     default:
       return TAPPING_TERM;
   }
