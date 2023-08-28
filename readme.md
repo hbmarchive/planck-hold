@@ -26,31 +26,31 @@ support open source projects and communities.
 
 ### Base Layer
 
-[Base Layer](https://i.imgur.com/lsXW3Mc.png)
+![Base Layer](https://i.imgur.com/lsXW3Mc.png)
 
 ### Right Symbol Layer
 
-[Right Symbol Layer](https://i.imgur.com/6zHpe9f.png)
+![Right Symbol Layer](https://i.imgur.com/6zHpe9f.png)
 
 ### Left Symbol Layer
 
-[Left Symbol Layer](https://i.imgur.com/CQ7dfmn.png)
+![Left Symbol Layer](https://i.imgur.com/CQ7dfmn.png)
 
 ### Navigation Layer
 
-[Navigation Layer](https://i.imgur.com/LSOYyqC.png)
+![Navigation Layer](https://i.imgur.com/LSOYyqC.png)
 
 ### Number Layer
 
-[Number Layer](https://i.imgur.com/xwLTub5.png)
+![Number Layer](https://i.imgur.com/xwLTub5.png)
 
 ### Control Layer
 
-[Control Layer](https://i.imgur.com/tvtl2IY.png)
+![Control Layer](https://i.imgur.com/tvtl2IY.png)
 
 ### Shortcut Layer
 
-[Shortcut Layer](https://i.imgur.com/57U8mHr.png)
+![Shortcut Layer](https://i.imgur.com/57U8mHr.png)
 
 
 
