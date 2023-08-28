@@ -121,10 +121,17 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   }
   // Ensure shift is not pressed when the symbol layer is active.
   if (IS_LAYER_ON(LSYM_LAYER) || IS_LAYER_ON(RSYM_LAYER)) {
-    // Allow the Z keycode in the LSYM layer to be capitalised.
-    if (keycode != OSM(LSYM_LAYER) && keycode != KC_Z) {
-      del_mods(MOD_MASK_SHIFT);
-      del_oneshot_mods(MOD_MASK_SHIFT);
+    // But allow the Z and / keycodes in the symbol layers to be shifted.
+    switch (keycode) {
+      case OSL(LSYM_LAYER):
+      case OSL(RSYM_LAYER):
+      case KC_Z:
+      case KC_SLSH:
+        break;
+      default:
+        del_mods(MOD_MASK_SHIFT);
+        del_oneshot_mods(MOD_MASK_SHIFT);
+        break;
     }
   }
   switch (keycode) {
