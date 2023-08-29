@@ -59,12 +59,21 @@ static bool m_altt_pressed = false;
 // function layer
 static bool m_is_chromebook = false;
 
+// Used to temporarily store the state of the mod keys.
+static uint8_t mod_state = 0;
+
+// State for managing shift backspace behaviour.
+static bool kc_del_registered = false;
+
+// State for managing shift up behaviour.
+static bool kc_down_registered = false;
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [BASE_LAYER] = LAYOUT_planck_grid(
     KC_ESC,         KC_Q,           LCTL_T(KC_W),          LALT_T(KC_F),         LGUI_T(KC_P),           KC_B,    KC_J,    RGUI_T(KC_L),          RALT_T(KC_U),         RCTL_T(KC_Y),           KC_NUBS,        KC_DEL,
     KC_TAB,         KC_A,           LT(CTRL_LAYER, KC_R),  LT(NAV_LAYER, KC_S),  LT(RSYM_LAYER, KC_T),  KC_G,    KC_M,    LT(LSYM_LAYER, KC_N),  LT(NUM_LAYER, KC_E),  LT(FKEYS_LAYER, KC_I),  KC_O,           KC_BSPC,
-    KC_CAPS,        KC_Z,           KC_X,                  KC_C,                 KC_D,                  KC_V,    KC_K,    KC_H,                  KC_COMM,              KC_DOT,                 KC_SLSH,        OSL(SCUT_LAYER),
+    KC_CAPS,        KC_Z,           KC_X,                  KC_C,                 KC_D,                  KC_V,    KC_K,    KC_H,                  KC_COMM,              KC_DOT,                 OSL(SCUT_LAYER), KC_UP,
     OSM(MOD_LCTL),  OSM(MOD_LALT),  OSM(MOD_LGUI),         MO(NAV_LAYER),        OSM(MOD_LSFT),         KC_SPC,  KC_ENT,  KC_ESC,                MO(NUM_LAYER),        OSM(MOD_RGUI),          OSM(MOD_RALT),  OSM(MOD_RCTL)
   ),
 
@@ -113,7 +122,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [SCUT_LAYER]  = LAYOUT_planck_grid(
     KC_TRNS,  M_ESCQ,   M_ESCW,      LCTL(KC_F),  KC_NO,             LCTL(KC_B),  M_WMAX,      KC_NO,    KC_NO,    KC_NO,     KC_NO,    KC_TRNS,
     KC_TRNS,  M_APP1,   M_APP2,      M_APP3,      M_1PASS,           M_APP4,      M_WMIN,      M_NTRM,   M_EMOJI,  M_ETCTLZ,  KC_NO,    KC_TRNS,
-    KC_CAPS,  KC_NO,    LCTL(KC_X),  LCTL(KC_C),  LSFT(LCTL(KC_C)),  LCTL(KC_V),  HYPR(KC_K),  M_DDS,    M_CSPC,   M_DSC,     KC_NO,  KC_TRNS,
+    KC_CAPS,  KC_NO,    LCTL(KC_X),  LCTL(KC_C),  LSFT(LCTL(KC_C)),  LCTL(KC_V),  HYPR(KC_K),  M_DDS,    M_CSPC,   M_DSC,     KC_SLSH,  KC_TRNS,
     KC_TRNS,  KC_TRNS,  KC_TRNS,     KC_TRNS,     KC_CAPS,           KC_TRNS,     KC_TRNS,     KC_TRNS,  KC_TRNS,  KC_TRNS,   KC_TRNS,  KC_TRNS)
 
 };
@@ -130,7 +139,44 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     del_mods(MOD_MASK_SHIFT);
     del_oneshot_mods(MOD_MASK_SHIFT);
   }
+  mod_state = get_mods();
   switch (keycode) {
+    // Shift-backspace produces delete.
+    case KC_BSPC:
+      if (record->event.pressed) {
+        if (mod_state & MOD_MASK_SHIFT) {
+          del_mods(MOD_MASK_SHIFT);
+          register_code(KC_DEL);
+          kc_del_registered = true;
+          set_mods(mod_state);
+          return false;
+        }
+      } else {
+        if (kc_del_registered) {
+          unregister_code(KC_DEL);
+          kc_del_registered = false;
+          return false;
+        }
+      }
+      break;
+    // Shift-up produces down.
+    case KC_UP:
+      if (record->event.pressed) {
+        if (mod_state & MOD_MASK_SHIFT) {
+          del_mods(MOD_MASK_SHIFT);
+          register_code(KC_DOWN);
+          kc_down_registered = true;
+          set_mods(mod_state);
+          return false;
+        }
+      } else {
+        if (kc_down_registered) {
+          unregister_code(KC_DEL);
+          kc_down_registered = false;
+          return false;
+        }
+      }
+      break;
     case M_ALTT:
       if (record->event.pressed) {
         if (!m_altt_pressed) {
