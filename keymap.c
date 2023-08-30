@@ -395,15 +395,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   return true;
 }
 
-void post_process_record_user(uint16_t keycode, keyrecord_t *record) {
-  switch (keycode) {
-    // Cancel caps lock if escape is pressed.
-    case KC_ESC:
-      if (host_keyboard_led_state().caps_lock) { tap_code(KC_CAPS); }
-      break;
-  }
-}
-
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
     // Set the tapping term for the homerow mods.
