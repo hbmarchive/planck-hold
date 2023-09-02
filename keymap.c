@@ -406,12 +406,12 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     case LCTL_T(KC_Y):
       return TAPPING_TERM_MODS;
     // Set the tapping term for the layer keys.
-    case LCTL_T(KC_R):
-    case LALT_T(KC_S):
-    case LGUI_T(KC_T):
-    case LGUI_T(KC_N):
-    case LALT_T(KC_E):
-    case LCTL_T(KC_I):
+    case LT(CTRL_LAYER, KC_R):
+    case LT(NAV_LAYER, KC_S):
+    case LT(RSYM_LAYER, KC_T):
+    case LT(LSYM_LAYER, KC_N):
+    case LT(NUM_LAYER, KC_E):
+    case LT(FKEYS_LAYER, KC_I):
       return TAPPING_TERM_LAYERS;
     default:
       return TAPPING_TERM;
