@@ -73,15 +73,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [BASE_LAYER] = LAYOUT_planck_grid(
     KC_ESC,         KC_Q,           LCTL_T(KC_W),          LALT_T(KC_F),         LGUI_T(KC_P),           KC_B,    KC_J,    RGUI_T(KC_L),          RALT_T(KC_U),         RCTL_T(KC_Y),           KC_NUBS,        KC_DEL,
     KC_TAB,         KC_A,           LT(CTRL_LAYER, KC_R),  LT(NAV_LAYER, KC_S),  LT(RSYM_LAYER, KC_T),  KC_G,    KC_M,    LT(LSYM_LAYER, KC_N),  LT(NUM_LAYER, KC_E),  LT(FKEYS_LAYER, KC_I),  KC_O,           KC_BSPC,
-    KC_CAPS,        KC_Z,           KC_X,                  KC_C,                 KC_D,                  KC_V,    KC_K,    KC_H,                  KC_COMM,              KC_DOT,                 OSL(SCUT_LAYER), KC_UP,
-    OSM(MOD_LCTL),  OSM(MOD_LALT),  OSM(MOD_LGUI),         MO(NAV_LAYER),        OSM(MOD_LSFT),         KC_SPC,  KC_ENT,  KC_ESC,                MO(NUM_LAYER),        OSM(MOD_RGUI),          OSM(MOD_RALT),  OSM(MOD_RCTL)
+    KC_CAPS,        KC_Z,           KC_X,                  KC_C,                 KC_D,                  KC_V,    KC_K,    KC_H,                  KC_COMM,              KC_DOT, KC_SLSH,                 OSL(SCUT_LAYER),
+    OSM(MOD_LSFT), OSM(MOD_LCTL),  OSM(MOD_LALT),  OSM(MOD_LGUI),         OSM(MOD_LSFT),         KC_SPC,  KC_ENT,  KC_UP, KC_LEFT, KC_DOWN, KC_UP, KC_RGHT
   ),
 
   [LSYM_LAYER] = LAYOUT_planck_grid(
-    KC_TRNS,  KC_EXLM,  LSFT(KC_2),     LSFT(KC_3),  KC_DLR,   KC_PERC,  KC_NO,  KC_NO,  KC_NO,  KC_NO,  KC_NO,  KC_TRNS,
-    KC_TRNS,  KC_NO,    LSFT(KC_NUBS),  KC_LBRC,     KC_LCBR,  KC_LPRN,  KC_NO,  KC_NO,  KC_NO,  KC_NO,  KC_NO,  KC_TRNS,
-    KC_TRNS,  KC_NO,    KC_NUBS,        KC_RBRC,     KC_RCBR,  KC_RPRN,  KC_NO,  KC_NO,  KC_NO,  KC_NO,  KC_SLSH,  KC_TRNS,
-    KC_TRNS,  KC_TRNS,  KC_TRNS,        KC_TRNS,     KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS
+    KC_TRNS,  KC_EXLM,        LSFT(KC_2),  LSFT(KC_3),  KC_DLR,   KC_PERC,  KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_TRNS,
+    KC_TRNS,  KC_ESC,         KC_COLN,     KC_LBRC,     KC_LCBR,  KC_LPRN,  KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_TRNS,
+    KC_TRNS,  LSFT(KC_NUBS),  KC_NUBS,     KC_RBRC,     KC_RCBR,  KC_RPRN,  KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_SLSH,  KC_TRNS,
+    KC_TRNS,  KC_TRNS,        KC_TRNS,     KC_TRNS,     KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS
   ),
 
   [RSYM_LAYER] = LAYOUT_planck_grid(
@@ -94,7 +94,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [NUM_LAYER] = LAYOUT_planck_grid(
     KC_TRNS,  KC_PAST,  KC_1,     KC_2,     KC_3,     KC_PPLS,  KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_TRNS,
     KC_TRNS,  KC_PSLS,  KC_4,     KC_5,     KC_6,     KC_PMNS,  KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_TRNS,
-    KC_TRNS,  KC_DOT,   KC_7,     KC_8,     KC_9,     KC_0,     KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_TRNS,
+    KC_TRNS,  KC_0,     KC_7,     KC_8,     KC_9,     KC_DOT,   KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_TRNS,
     KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS
   ),
 
@@ -121,9 +121,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [SCUT_LAYER]  = LAYOUT_planck_grid(
     KC_TRNS,  M_ESCQ,   M_ESCW,      LCTL(KC_F),  KC_NO,             LCTL(KC_B),  M_WMAX,      KC_NO,    KC_NO,    KC_NO,     KC_NO,    KC_TRNS,
-    KC_TRNS,  M_APP1,   M_APP2,      M_APP3,      M_1PASS,           M_APP4,      M_WMIN,      M_NTRM,   M_EMOJI,  M_ETCTLZ,  KC_NO,    KC_TRNS,
-    KC_CAPS,  KC_NO,    LCTL(KC_X),  LCTL(KC_C),  LSFT(LCTL(KC_C)),  LCTL(KC_V),  HYPR(KC_K),  M_DDS,    M_CSPC,   M_DSC,     KC_SLSH,  KC_TRNS,
-    KC_TRNS,  KC_TRNS,  KC_TRNS,     KC_TRNS,     KC_CAPS,           KC_TRNS,     KC_TRNS,     KC_TRNS,  KC_TRNS,  KC_TRNS,   KC_TRNS,  KC_TRNS)
+    KC_TRNS,  M_APP4,   M_APP1,      M_APP2,      M_1PASS,           M_APP3,      M_WMIN,      M_NTRM,   M_EMOJI,  M_ETCTLZ,  KC_NO,    KC_TRNS,
+    KC_CAPS,  KC_NO,    LCTL(KC_X),  LCTL(KC_C),  LSFT(LCTL(KC_C)),  LCTL(KC_V),  HYPR(KC_K),  M_DDS,    M_CSPC,   M_DSC,     KC_NO,    KC_TRNS,
+    KC_TRNS,  KC_TRNS,  KC_TRNS,     KC_TRNS,     KC_TRNS,           KC_TRNS,     KC_TRNS,     KC_TRNS,  KC_TRNS,  KC_TRNS,   KC_TRNS,  KC_TRNS)
 
 };
 
