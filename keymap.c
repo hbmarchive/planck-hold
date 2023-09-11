@@ -87,8 +87,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [RSYM_LAYER] = LAYOUT_planck_grid(
     KC_TRNS,  KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_CIRC,  KC_AMPR,        KC_ASTR,        KC_UNDS,  KC_PLUS,  KC_TRNS,
     KC_TRNS,  KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_COLN,  LSFT(KC_QUOT),  LSFT(KC_BSLS),  KC_MINS,  KC_EQL,   KC_TRNS,
-    KC_TRNS,  KC_Z,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_SCLN,  KC_QUOT,        KC_BSLS,        KC_GRV,   KC_NO,    KC_TRNS,
-    KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,        KC_TRNS,        KC_TRNS,  KC_TRNS,  KC_TRNS
+    KC_TRNS,  KC_Z,     KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_SCLN,  KC_QUOT,        KC_BSLS,        KC_GRV,   KC_QUES,  KC_TRNS,
+    KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_BTN2,  KC_BTN1,  KC_BTN1,  KC_BTN2,        KC_TRNS,        KC_TRNS,  KC_TRNS,  KC_TRNS
   ),
 
   [NUM_LAYER] = LAYOUT_planck_grid(
@@ -102,7 +102,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TRNS,  KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    M_XTAB,   M_PDESK,  LCTL(KC_TAB),  M_ALTT,   M_NDESK,  KC_TRNS,
     KC_TRNS,  KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_WH_U,  KC_LEFT,  KC_DOWN,       KC_UP,    KC_RGHT,  KC_TRNS,
     KC_TRNS,  KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_WH_D,  KC_HOME,  KC_PGDN,       KC_PGUP,  KC_END,   KC_TRNS,
-    KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,       KC_TRNS,  KC_TRNS,  KC_TRNS
+    KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_BTN2,  KC_BTN1,  KC_BTN1,  KC_BTN2,  KC_TRNS,       KC_TRNS,  KC_TRNS,  KC_TRNS
   ),
 
   [FKEYS_LAYER] = LAYOUT_planck_grid(
@@ -113,10 +113,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 
   [CTRL_LAYER] = LAYOUT_planck_grid(
-    KC_TRNS,         KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    M_ISWIN,         M_ISCB,   KC_PSCR,  KC_INS,        KC_TRNS,
-    KC_TRNS,         KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_BRIU,  KC_VOLU,         KC_MNXT,  KC_MPLY,  LSFT(KC_INS),  KC_TRNS,
-    KC_TRNS,         KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_BRID,  KC_VOLD,         KC_MPRV,  KC_MUTE,  LCTL(KC_INS),  KC_TRNS,
-    KC_TRNS,         KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,         KC_TRNS,  KC_TRNS,  KC_TRNS,       KC_TRNS
+    KC_TRNS,  KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    M_ISWIN,  M_ISCB,   KC_PSCR,  KC_INS,        KC_INS,
+    KC_TRNS,  KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_BRIU,  KC_VOLU,  KC_MNXT,  KC_MPLY,  LSFT(KC_INS),  LSFT(KC_INS),
+    KC_TRNS,  KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_BRID,  KC_VOLD,  KC_MPRV,  KC_MUTE,  LCTL(KC_INS),  LCTL(KC_INS),
+    KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_BTN2,  KC_BTN1,  KC_BTN1,  KC_BTN2,  KC_TRNS,  KC_TRNS,  KC_TRNS,       KC_TRNS
   ),
 
   [SCUT_LAYER]  = LAYOUT_planck_grid(
